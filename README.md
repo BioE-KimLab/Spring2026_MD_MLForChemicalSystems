@@ -76,8 +76,8 @@ make sure the `system-requirements cuda` pin matches.  The file ships with:
 If your `nvidia-smi` shows a different version (e.g. `12.6`), change the
 line accordingly:
 
-```yaml
-  - cuda-version 12.6.*
+```
+  - cudai =  12.6.*
 ```
 
 **No NVIDIA GPU?**  Remove the `system-requirements` section

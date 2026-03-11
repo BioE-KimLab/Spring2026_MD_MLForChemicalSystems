@@ -1,0 +1,41 @@
+name: md-demo
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Core MD engine
+  - openmm >=8.1
+  - openmmforcefields >=0.13
+  - openff-toolkit >=0.16
+  - openff-interchange >=0.3
+  - openff-units
+
+  # CUDA — pin to match your driver (check what nvidia-smi shows on your machine, e.g. "CUDA Version: 12.8")
+  # Without this, the solver may pick other CUDA packages that produce "CUDA_ERROR_UNSUPPORTED_PTX_VERSION" at runtime.
+  - cuda-version 12.8.*
+
+  # Machine-learning potential support
+  - openmm-ml >=1.1
+  - pytorch >=2.1
+  - openmm-torch
+  - nnpops
+
+  # Trajectory analysis
+  - mdanalysis >=2.7
+  - tidynamics
+
+  # Scientific computing & plotting
+  - numpy
+  - scipy
+  - matplotlib
+
+  # Notebook
+  - jupyter
+  - ipykernel
+
+  # Utilities
+  - tqdm
+  - nglview
+
+  - pip:
+      - mace-torch

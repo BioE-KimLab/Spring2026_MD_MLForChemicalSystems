@@ -5,6 +5,7 @@ hands-on demonstration of computing the self-diffusion coefficient of liquid eth
 different force field approaches.
 
 # MD - Ethanol Self-Diffusion Coefficient via Molecular Dynamicss
+Courtesy of @howziin
 1. **GAFF2** — a classical, empirically parameterized force field (General AMBER Force Field 2)
 2. **MACE-OFF23** — a machine-learned interatomic potential (MLIP) trained on quantum-mechanical data
 

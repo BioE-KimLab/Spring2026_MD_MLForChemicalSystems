@@ -1,0 +1,46 @@
+[workspace]
+authors = ["Sabari Kumar <sabarinkumar@gmail.com>"]
+channels = ["conda-forge"]
+name = "Spring2026_MLForChemicalSystems"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+pytorch = ">=2.10.0,<3"
+torchvision = ">=0.25.0,<0.26"
+torchaudio = ">=2.10.0,<3"
+
+[feature.md-demo]
+channels = ["conda-forge", "main", "r", "msys2"]
+
+[feature.md-demo.dependencies]
+openmm = ">=8.1"
+openmmforcefields = ">=0.13"
+openff-toolkit = ">=0.16"
+openff-interchange = ">=0.3"
+openff-units = "*"
+cuda-version = "12.8.*"
+openmm-ml = ">=1.1"
+pytorch = ">=2.1"
+openmm-torch = "*"
+nnpops = "*"
+mdanalysis = ">=2.7"
+tidynamics = "*"
+numpy = "*"
+scipy = "*"
+matplotlib = "*"
+jupyter = "*"
+ipykernel = "*"
+tqdm = "*"
+nglview = "*"
+
+[feature.md-demo.pypi-dependencies]
+mace-torch = "*"
+
+[environments]
+md-demo = { features = ["md-demo"], no-default-feature = true }
+
+[system-requirements]
+cuda = "12.4"

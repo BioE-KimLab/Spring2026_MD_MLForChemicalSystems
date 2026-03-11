@@ -14,3 +14,6 @@ mace_topology.pdb
 # Python
 __pycache__/
 *.pyc
+# pixi environments
+.pixi/*
+!.pixi/config.toml

@@ -35,6 +35,12 @@ def com_center(coords: np.array, weights: np.array) -> np.array:
 
 class VampNetLoss(nn.Module):
     def __init__(self):
+        """
+        Initializes VAMPNet loss. 
+        self.eps represents the threshold for selecting an eigenvalue when
+        inverting covariance matrices. Don't change this unless you have a good
+        reason to.
+        """
         self.eps = 1e-10
         super().__init__()
 
@@ -58,14 +64,31 @@ class VampNetLoss(nn.Module):
         vamp_matrix = auto_cov_inv @ cross_cov @ auto_cov_inv
         return -1*torch.square(torch.linalg.matrix_norm(vamp_matrix))
 
-    def _prep_data(self, x: torch.Tensor, y: torch.Tensor):
+    def _prep_data(self, x: torch.Tensor, y: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        """
+        Mean centers a pair of input matrices
+        Params:
+            x:torch.Tensor : input matrix 1
+            y:torch.Tensor : input matrix 2
+        Returns:
+            Tuple[torch.Tensor, torch.Tensor] : centered matrices
+        """
         x_t = x.T
         y_t = y.T
         x_ = x_t - torch.mean(x, dim = 1)
         y_ = y_t - torch.mean(y, dim = 1)
         return x_, y_
 
-    def _inv(self, x: torch.Tensor, sqrt: bool):
+    def _inv(self, x: torch.Tensor, sqrt: bool) -> torch.Tensor:
+        """
+        Inverts a matrix, selecting only eigenvalues that are above the self.eps
+        threshold
+        Params:
+            x: torch.Tensor : input matrix
+            sqrt: bool : return square root of the inverse matrix
+        Returns:
+            torch.tensor: inverse matrix
+        """
         eigval_all, eigvec_all = torch.linalg.eigh(x)
         eigval_mask = eigval_all > self.eps
         eigval = eigval_all[eigval_mask]
